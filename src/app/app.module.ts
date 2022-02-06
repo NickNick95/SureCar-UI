@@ -5,14 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { WarehouseService } from './services/warehouse/warehouse.service.service';
+import { APIInterceptor } from './services/api-interceptor';
 import { WarehouseListComponent } from './components/warehouse-list/warehouse-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { WarehouseThumbnailComponent } from './components/warehouse-thumbnail/warehouse-thumbnail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    WarehouseListComponent
+    WarehouseListComponent,
+    WarehouseThumbnailComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +25,14 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    WarehouseService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: APIInterceptor,
+        multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
