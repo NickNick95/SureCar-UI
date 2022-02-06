@@ -1,0 +1,14 @@
+<div [routerLink]="['/warehouse', warehouse.id]" class="well hoverwell thumbnail">
+    <h2>{{warehouse?.name | uppercase}}</h2>
+    <div>Location: {{warehouse?.location }}<div>
+            <div>Cars
+                <div>
+                    Location:{{warehouse?.car?.location}}
+                </div>
+                <div>
+                    Vehicle count:{{warehouse.car.vehicles.length}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
