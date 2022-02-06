@@ -9,21 +9,33 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WarehouseService } from './services/warehouse/warehouse.service.service';
 import { APIInterceptor } from './services/api-interceptor';
-import { WarehouseListComponent } from './components/warehouse-list/warehouse-list.component';
-import { WarehouseThumbnailComponent } from './components/warehouse-thumbnail/warehouse-thumbnail.component';
+import { CarListComponent } from './components/car-list/car-list.component';
+import { CarThumbnailComponent } from './components/car-thumbnail/car-thumbnail.component';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
+import { GoogleMapsModule } from '@angular/google-maps'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    WarehouseListComponent,
-    WarehouseThumbnailComponent
+    CarListComponent,
+    CarThumbnailComponent,
+    CarDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
+    GoogleMapsModule
   ],
   providers: [
     WarehouseService,

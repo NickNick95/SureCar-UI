@@ -1,0 +1,19 @@
+<div class="thumbnail">
+    <div class="photo">
+        <img src="../../../assets/car.png" alt="image">
+    </div>
+
+    <div class="information">
+        <h2>{{vehicle.make}} {{vehicle.model}}</h2>
+        <div>
+            Warehouse: {{warehouse?.name}}
+        </div>
+        <div>
+            Year Model: {{vehicle.yearModel}}
+        </div>
+        <div>
+            Price: {{vehicle.price}} $
+        </div>
+        <button mat-stroked-button (click)="openDetails()">Details</button>
+    </div>
+</div>
