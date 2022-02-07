@@ -3,14 +3,12 @@ import { ResponseModel } from 'src/app/models/general/response.model';
 import { Wherehouse } from 'src/app/models/warehouse';
 import { WarehouseService } from 'src/app/services/warehouse/warehouse.service.service';
 
-
-
 @Component({
-    selector: 'warehouse-list',
-    templateUrl: './warehouse-list.component.html',
-    styleUrls: ['./warehouse-list.component.scss']
+  selector: 'car-list',
+  templateUrl: './car-list.component.html',
+  styleUrls: ['./car-list.component.scss']
 })
-export class WarehouseListComponent implements OnInit {
+export class CarListComponent implements OnInit {
 
     public warehouses: Wherehouse[];
 
@@ -23,4 +21,5 @@ export class WarehouseListComponent implements OnInit {
             }
         });
     }
+
 }
