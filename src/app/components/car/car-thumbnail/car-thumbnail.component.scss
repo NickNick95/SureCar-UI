@@ -4,7 +4,6 @@
      color: #1A374D;
      width: auto;
      background-color: #D3DEDC;
-
      .photo {
         display: inline-block;
         vertical-align: middle;
@@ -23,5 +22,17 @@
     .information {
         display: inline-block;
         vertical-align: middle;
+
+        h2 {
+            margin: 5px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    button{
+        margin-top: 10px;
     }
 }

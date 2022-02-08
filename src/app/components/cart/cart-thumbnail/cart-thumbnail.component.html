@@ -1,0 +1,20 @@
+<div class="cart-dialog">
+    <h2 mat-dialog-title>{{cartItem.title}}</h2>
+    <div class="row">
+        <div class="col-4">
+            <img src="../../../assets/car.png">
+        </div>
+        <div class="col-8">
+            <p>
+                Warehouse: {{cartItem.warehouseName}}
+            </p>
+            <p>
+                Year Model: {{cartItem.title}}
+            </p>
+            <p>
+                Price: {{cartItem.price}} $
+            </p>
+            <button mat-button (click)="removeById(cartItem.vehicleId)">Remove</button>
+        </div>
+    </div>
+</div>

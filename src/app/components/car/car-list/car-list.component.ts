@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResponseModel } from 'src/app/models/general/response.model';
-import { Wherehouse } from 'src/app/models/warehouse';
-import { WarehouseService } from 'src/app/services/warehouse/warehouse.service.service';
+import { Warehouse } from 'src/app/models/warehouse.model';
+import { WarehouseService } from 'src/app/services/warehouse/warehouse.service';
 
 @Component({
   selector: 'car-list',
@@ -10,12 +10,12 @@ import { WarehouseService } from 'src/app/services/warehouse/warehouse.service.s
 })
 export class CarListComponent implements OnInit {
 
-    public warehouses: Wherehouse[];
+    public warehouses: Warehouse[];
 
     constructor(private warehouseService: WarehouseService) { }
 
     ngOnInit(): void {
-        this.warehouseService.getAll().subscribe((response: ResponseModel<Wherehouse[]>) => {
+        this.warehouseService.getAll().subscribe((response: ResponseModel<Warehouse[]>) => {
             if (response.content) {
                 this.warehouses = response.content;
             }
