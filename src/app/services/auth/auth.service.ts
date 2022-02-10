@@ -38,7 +38,7 @@ export class AuthService {
     }
 
     public login(model: Login): Observable<ResponseModel<User>> {
-        return this.http.post<ResponseModel<User>>('api/users/login', model)
+        return this.http.post<ResponseModel<User>>('api/user/login', model)
             .pipe(tap(response => {
                 if (response.content) {
                     response.content.isActive = true;
@@ -59,7 +59,7 @@ export class AuthService {
 
         let logoutRequest = new Logout(userId)
 
-        return this.http.post<ResponseModel<string>>('api/users/logout', logoutRequest, options)
+        return this.http.post<ResponseModel<string>>('api/user/logout', logoutRequest, options)
             .pipe(tap(response => {
                 if (response.isSuccessful){
                     this.jwtHelper.removeJwtToken();
