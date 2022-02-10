@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { GoogleMapsModule } from '@angular/google-maps'
 import { WarehouseService } from './services/warehouse/warehouse.service';
@@ -22,6 +24,11 @@ import { CarDetailsComponent } from './components/car/car-details/car-details.co
 import { CartThumbnailComponent } from './components/cart/cart-thumbnail/cart-thumbnail.component';
 import { AuthService } from './services/auth/auth.service';
 import { CartService } from './services/cart/cart.service.service';
+import { JwtHelperService } from './services/jwtHelpe/jwt-helper.service';
+import { LoginComponent } from './components/user/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CacheService } from './services/cache/cache.service';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -33,8 +40,12 @@ import { CartService } from './services/cart/cart.service.service';
     CarDetailsComponent,
     CartListComponent,
     CartThumbnailComponent,
+    LoginComponent,
+    UserProfileComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
@@ -43,11 +54,15 @@ import { CartService } from './services/cart/cart.service.service';
     MatDialogModule,
     MatButtonModule,
     GoogleMapsModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
+    CacheService,
     CartService,
     AuthService,
+    JwtHelperService,
     WarehouseService,
     {
         provide: HTTP_INTERCEPTORS,

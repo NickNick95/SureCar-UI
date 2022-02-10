@@ -5,19 +5,19 @@ import { CarItem } from 'src/app/models/cartItem.model';
 export class CartService {
 
     public cartItemList: CarItem[] = []
-    public productList = new BehaviorSubject<CarItem[]>([]);
+    public cartList = new BehaviorSubject<CarItem[]>([]);
 
     constructor() { }
 
     public getCarts() {
-        return this.productList.asObservable();
+        return this.cartList.asObservable();
     }
 
     public addtoCart(item: CarItem) {
         let cartItemExist = this.cartItemList.find(c => c.vehicleId === item.vehicleId);
         if (!cartItemExist) {
             this.cartItemList.push(item);
-            this.productList.next(this.cartItemList);
+            this.cartList.next(this.cartItemList);
             console.log(this.cartItemList)
         }
     }
@@ -36,10 +36,10 @@ export class CartService {
                 this.cartItemList.splice(index, 1);
             }
         })
-        this.productList.next(this.cartItemList);
+        this.cartList.next(this.cartItemList);
     }
     removeAllCart() {
         this.cartItemList = []
-        this.productList.next(this.cartItemList);
+        this.cartList.next(this.cartItemList);
     }
 }

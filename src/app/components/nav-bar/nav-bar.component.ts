@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models/user/user.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service.service';
 import { CartListComponent } from '../cart/cart-list/cart-list.component';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -12,18 +15,34 @@ import { CartListComponent } from '../cart/cart-list/cart-list.component';
 })
 export class NavBarComponent implements OnInit {
 
-    public totalItem : number = 0;
+    public totalItem: number = 0;
+    public currentUser: User;
 
-    constructor(private route: ActivatedRoute,
+    public isAuthorized : boolean = false;
+
+    constructor(public auth: AuthService,
         private router: Router,
         private cartService: CartService,
-        public dialog: MatDialog,) { }
+        private dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.cartService.getCarts()
-        .subscribe(res=>{
-          this.totalItem = res.length;
-        })
+            .subscribe(res => {
+                this.totalItem = res.length;
+            })
+
+        this.auth.getCurrentUser()
+            .subscribe(user => {
+                if (!user.hasOwnProperty('isActive'))
+                    return;
+
+                if (user.isActive) {
+                    this.isAuthorized = user.isActive;
+                    this.currentUser = user;
+                } else {
+                    this.isAuthorized = false;
+                }
+            })
     }
 
     public openCars() {
@@ -33,5 +52,13 @@ export class NavBarComponent implements OnInit {
 
     public openCart() {
         this.dialog.open(CartListComponent);
+    }
+
+    public login() {
+        this.router.navigate(['/login']);
+    }
+
+    public openProfile(){
+        this.router.navigate(['/profile']);
     }
 }

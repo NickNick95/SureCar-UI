@@ -6,9 +6,13 @@
 			<div class="badge bg-danger">{{totalItem}}</div>
 		</button>
 
-		<button mat-button>
+		<button mat-button *ngIf="!isAuthorized" (click)="login()">
 			<mat-icon class="white-icon">account_circle</mat-icon>
 			Login
+		</button>
+
+		<button mat-button *ngIf="isAuthorized" (click)="openProfile()">
+			{{currentUser.userName}}
 		</button>
 	</div>
 </nav>

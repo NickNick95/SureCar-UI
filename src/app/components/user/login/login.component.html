@@ -1,0 +1,30 @@
+<h1>Login</h1>
+<hr>
+
+<div class="col-md-4">
+  <form [formGroup]="form.ref" (ngSubmit)="submit()" autocomplete="off">
+    <div class="form-group">
+      <label for="userName">User Name:</label>
+      <mat-form-field>
+        <input matInput type="text" placeholder="User Name:" formControlName="userName"
+             autocomplete="off">
+        <mat-error *ngIf="form.errors.userName">
+          {{ form.errors.userName}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password:" formControlName="password"
+             autocomplete="off">
+        <mat-error *ngIf="form.errors.password">
+          {{ form.errors.password}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <span>
+      <button type="submit" class="btn btn-primary" >Login</button>
+    </span>
+  </form>
+</div>
