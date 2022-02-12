@@ -29,6 +29,7 @@ import { LoginComponent } from './components/user/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CacheService } from './services/cache/cache.service';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { RegistrationComponent } from './components/user/register/registrationcomponent';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
     CartThumbnailComponent,
     LoginComponent,
     UserProfileComponent,
+    RegistrationComponent,
   ],
   imports: [
     FormsModule,

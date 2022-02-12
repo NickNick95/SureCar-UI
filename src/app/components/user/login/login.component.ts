@@ -13,16 +13,11 @@ export class LoginComponent implements OnInit {
     public hide = true;
 
     public form = {
-		step: {} as any,
-		ref: {} as FormGroup,
-		errors: {} as any,
-        messages: {
-            userName: {
-                required: 'User name is required.'
-            },
-            password: {
-                required: 'Password is required.'
-            }
+        step: {} as any,
+        ref: {} as FormGroup,
+        errors: {
+            userName: 'User name is required.',
+            password: 'Password is required.'
         }
     }
 
@@ -35,15 +30,18 @@ export class LoginComponent implements OnInit {
     }
 
     public submit(): any {
+        if (this.form.ref.valid) {
+            let model = new Login(this.form.ref.value);
 
-        let model = new Login();
-        model.userName = this.form.ref.value.userName;
-        model.password = this.form.ref.value.password;
+            this.authService.login(model)
+                .subscribe(result => {
+                    this.router.navigate(['']);
+                });
+        }
+    }
 
-        this.authService.login(model)
-            .subscribe(result => {
-                this.router.navigate(['']);
-            });
+    public registration() {
+        this.router.navigate(['registration']);
     }
 
     private buildForm() {

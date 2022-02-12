@@ -1,14 +1,14 @@
 <h1>Login</h1>
 <hr>
 
-<div class="col-md-4">
+<div class="login col-md-4">
   <form [formGroup]="form.ref" (ngSubmit)="submit()" autocomplete="off">
     <div class="form-group">
       <label for="userName">User Name:</label>
       <mat-form-field>
         <input matInput type="text" placeholder="User Name:" formControlName="userName"
              autocomplete="off">
-        <mat-error *ngIf="form.errors.userName">
+        <mat-error *ngIf="form.ref.controls['userName'].invalid">
           {{ form.errors.userName}}
         </mat-error>
       </mat-form-field>
@@ -18,13 +18,16 @@
       <mat-form-field>
         <input matInput type="password" placeholder="Password:" formControlName="password"
              autocomplete="off">
-        <mat-error *ngIf="form.errors.password">
+        <mat-error *ngIf="form.ref.controls['password'].invalid">
           {{ form.errors.password}}
         </mat-error>
       </mat-form-field>
     </div>
     <span>
-      <button type="submit" class="btn btn-primary" >Login</button>
+      <button type="submit" class="btn btn-primary" [disabled]="this.form.ref.invalid">Login</button>
     </span>
   </form>
+  <span>
+    <button class="btn btn-primary" (click)="registration()">Registration</button>
+  </span>
 </div>

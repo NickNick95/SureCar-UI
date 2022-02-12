@@ -1,0 +1,79 @@
+<h1>Register new User</h1>
+<hr>
+<div class="registration col">
+  <form [formGroup]="form.ref" (ngSubmit)="submit()" autocomplete="off">
+    <div class="form-group">
+      <label for="userName">User Name:</label>
+      <mat-form-field>
+        <input matInput type="text" placeholder="User Name:" formControlName="userName"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['userName'].invalid">
+          {{ form.errors.userName}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <mat-form-field>
+        <input matInput type="text" placeholder="First Name:" formControlName="firstName"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['firstName'].invalid">
+          {{ form.errors.firstName}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Last Name:" formControlName="lastName"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['lastName'].invalid">
+          {{ form.errors.lastName}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Email:" formControlName="email"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['email'].invalid">
+          {{ form.errors.email}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone number:</label>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Phone number:" formControlName="phoneNumber"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['phoneNumber'].invalid">
+          {{ form.errors.phoneNumber}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password:" formControlName="password"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['password'].invalid">
+          {{ form.errors.password}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm password:</label>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Confirm password:" formControlName="confirmPassword"
+             autocomplete="off">
+        <mat-error *ngIf="form.ref.controls['confirmPassword'].invalid">
+          {{ form.errors.confirmPassword}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <span>
+      <button type="submit" class="btn btn-primary" [disabled]="this.form.ref.invalid">Registrate</button>
+    </span>
+  </form>
+</div>

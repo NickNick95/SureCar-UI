@@ -2,7 +2,7 @@ export class ResponseModel<T> {
     public token: string;
     public isSuccessful: boolean;
 	public content: T;
-	public errors: any;
+	public errors: string[];
 	public status: number;;
 
 	constructor(response: ResponseModel<T>) {

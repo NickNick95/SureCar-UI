@@ -1,14 +1,28 @@
-::ng-deep .mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color: #1abc9c !important;
-   }
+.login {
 
-   ::ng-deep.mat-form-field-underline {
-    /*change color of underline*/
-    background-color: #1abc9c !important;
+  .form-group {
+    label {
+      margin-right: 10px;
+    }
   }
 
-  ::ng-deep.mat-form-field-ripple {
-   /*change color of underline when focused*/
-   background-color: #1abc9c !important;;
+  button {
+    margin-bottom: 20px;
   }
+
+
+  ::ng-deep .mat-focused .mat-form-field-label {
+      /*change color of label*/
+      color: #367467 !important;
+    }
+
+    ::ng-deep.mat-form-field-underline {
+      /*change color of underline*/
+      background-color: #367467 !important;
+    }
+
+    ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #367467 !important;;
+    }
+}

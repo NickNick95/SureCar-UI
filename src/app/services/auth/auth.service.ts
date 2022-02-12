@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, take, tap } from 'rxjs';
+import { ResponseMessage } from 'src/app/models/general/response-message.model';
 import { ResponseModel } from 'src/app/models/general/response.model';
 import { Login } from 'src/app/models/user/login.model';
 import { Logout } from 'src/app/models/user/logout.model';
+import { Registrate as Registration } from 'src/app/models/user/registrate.model';
 import { User } from 'src/app/models/user/user.model';
 import { CacheService } from '../cache/cache.service';
 import { JwtHelperService } from '../jwtHelpe/jwt-helper.service';
@@ -37,6 +39,11 @@ export class AuthService {
             }));
     }
 
+    public registrate(model: Registration): Observable<ResponseModel<ResponseMessage>> {
+        return this.http.post<ResponseModel<ResponseMessage>>('api/user/registration', model)
+        .pipe(catchError(this.handleError<ResponseModel<ResponseMessage>>('Registrate')));
+    }
+
     public login(model: Login): Observable<ResponseModel<User>> {
         return this.http.post<ResponseModel<User>>('api/user/login', model)
             .pipe(tap(response => {
@@ -51,7 +58,7 @@ export class AuthService {
             .pipe(catchError(this.handleError<ResponseModel<User>>('login')));
     }
 
-    public logout(userId: string): Observable<ResponseModel<string>> {
+    public logout(userId: string): Observable<ResponseModel<ResponseMessage>> {
         const headers= new HttpHeaders()
             .set('content-type', 'application/json')
             .set('Authorization', `bearer ${this.jwtHelper.getJwtToken()}`);
@@ -59,7 +66,7 @@ export class AuthService {
 
         let logoutRequest = new Logout(userId)
 
-        return this.http.post<ResponseModel<string>>('api/user/logout', logoutRequest, options)
+        return this.http.post<ResponseModel<ResponseMessage>>('api/user/logout', logoutRequest, options)
             .pipe(tap(response => {
                 if (response.isSuccessful){
                     this.jwtHelper.removeJwtToken();
@@ -69,7 +76,7 @@ export class AuthService {
                     this.user.next(deactiveUser);
                 }
             }))
-            .pipe(catchError(this.handleError<ResponseModel<string>>('logout')));
+            .pipe(catchError(this.handleError<ResponseModel<ResponseMessage>>('logout')));
     }
 
     private handleError<T>(operation = 'operation', result?: T) {
