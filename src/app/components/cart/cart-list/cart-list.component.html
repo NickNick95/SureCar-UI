@@ -15,10 +15,13 @@
     <div *ngIf="isCartEmpty">
         <p>The shop cart is empty. Pleas add a car for making orders. Thanks</p>
     </div>
+    <p *ngIf="!isAuthorized">
+        The only authorized users can make orders
+    </p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button [mat-dialog-close]="false" class="modal-secondary">Cansel</button>
-    <button mat-stroked-button *ngIf="!isCartEmpty" (click)="submit()" class="modal-primary">
+    <button mat-stroked-button *ngIf="!isCartEmpty && isAuthorized" (click)="submit()" class="modal-primary">
         Approve Order(s)
     </button>
 </mat-dialog-actions>

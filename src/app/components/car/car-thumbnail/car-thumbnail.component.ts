@@ -5,6 +5,7 @@ import { CarDetailsComponent } from '../car-details/car-details.component';
 import { CartService } from 'src/app/services/cart/cart.service.service';
 import { Vehicle } from 'src/app/models/vehicle.model';
 import { CarItem } from 'src/app/models/cartItem.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
     selector: 'car-thumbnail',
@@ -16,10 +17,30 @@ export class CarThumbnailComponent implements OnInit {
     @Input() warehouse: Warehouse;
     @Input() vehicle: Vehicle;
 
+    public isAdministrator: boolean = false;
+
     constructor(public dialog: MatDialog,
-        private cartService: CartService) { }
+        private cartService: CartService,
+        private auth: AuthService) { }
 
     ngOnInit(): void {
+
+        this.auth.getCurrentUser()
+            .subscribe(user => {
+                if (!user.hasOwnProperty('isActive'))
+                    return;
+
+                if (user?.isActive && user?.id) {
+                    this.auth.checkIsAdministratorUser(user.id)
+                        .subscribe(result => {
+                            if (result?.isSuccessful) {
+                                this.isAdministrator = result.content;
+                            }
+                        });
+                } else {
+                    this.isAdministrator = false;
+                }
+            })
     }
 
     public openDetails() {

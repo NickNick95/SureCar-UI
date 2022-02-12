@@ -1,0 +1,28 @@
+<div class="order-thumbnail">
+    <h2 mat-dialog-title>{{title}}</h2>
+    <div class="row">
+        <div class="vehicle-details col-4">
+            <div class="details" *ngFor="let vehicle of orderDetails.vehicles">
+                <p>{{vehicle.make}} {{vehicle.model}} </p>
+                <p class="font-weight-bold text-uppercase"> Added: {{vehicle.dateAdded | date:'dd.MM.yyyy'}}</p>
+                <p>
+                    Year Model: {{vehicle.yearModel}}
+                </p>
+                <p>
+                    Price: {{vehicle.price}} $
+                </p>
+            </div>
+        </div>
+        <div class="col-8">
+            <p>
+                userName: {{orderDetails.userName}}
+            </p>
+            <p>
+                Phone Number: {{orderDetails.phoneNumber}}
+            </p>
+            <p>
+                Email: {{orderDetails.email}} $
+            </p>
+        </div>
+    </div>
+</div>

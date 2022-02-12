@@ -1,9 +1,13 @@
 <nav class="navbar navbar-dark bg-dark justify-content-between">
 	<a class="navbar-brand" (click)="openCars()">Sure Car</a>
 	<div>
-		<button mat-button (click)="openCart()">
+		<button mat-button *ngIf="!isAdministrator" (click)="openCart()">
 			<mat-icon class="white-icon">shopping_basket</mat-icon>
 			<div class="badge bg-danger">{{totalItem}}</div>
+		</button>
+
+		<button mat-button *ngIf="isAdministrator" (click)="openOrderList()">
+			<mat-icon class="white-icon">message</mat-icon>
 		</button>
 
 		<button mat-button *ngIf="!isAuthorized" (click)="login()">

@@ -27,8 +27,9 @@ export class UserProfileComponent implements OnInit {
 
     public logout() {
         if (this.currentUser.id) {
-            this.auth.logout(this.currentUser.id).subscribe(() => {
-                this.router.navigate(['/login']);
+            this.auth.logout(this.currentUser.id).subscribe(response => {
+                if (response.isSuccessful)
+                    this.router.navigate(['/login']);
             });
         }
     }

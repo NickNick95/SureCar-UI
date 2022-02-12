@@ -16,8 +16,8 @@
             Price: {{vehicle.price}} $
         </p>
         <div class="row">
-                <button class="col" *ngIf="vehicle.licensed" mat-stroked-button (click)="openDetails()">Details</button>
-                <button class="col" mat-stroked-button (click)="addToCart()">
+                <button class="col" *ngIf="vehicle.licensed || isAdministrator" mat-stroked-button (click)="openDetails()">Details</button>
+                <button class="col" mat-stroked-button *ngIf="!isAdministrator" (click)="addToCart()">
                     <mat-icon>add_shopping_cart</mat-icon>
                 </button>
         </div>

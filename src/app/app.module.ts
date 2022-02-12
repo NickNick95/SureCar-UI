@@ -30,6 +30,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CacheService } from './services/cache/cache.service';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { RegistrationComponent } from './components/user/register/registrationcomponent';
+import { OrderService } from './services/order/order.service';
+import { BaseService } from './services/base-service';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { OrderThumbnailComponent } from './components/order/order-thumbnail/order-thumbnail.component';
 
 
 @NgModule({
@@ -44,6 +48,8 @@ import { RegistrationComponent } from './components/user/register/registrationco
     LoginComponent,
     UserProfileComponent,
     RegistrationComponent,
+    OrderListComponent,
+    OrderThumbnailComponent,
   ],
   imports: [
     FormsModule,
@@ -61,6 +67,8 @@ import { RegistrationComponent } from './components/user/register/registrationco
     MatInputModule
   ],
   providers: [
+    BaseService,
+    OrderService,
     CacheService,
     CartService,
     AuthService,

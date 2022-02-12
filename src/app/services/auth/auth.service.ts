@@ -7,25 +7,27 @@ import { Login } from 'src/app/models/user/login.model';
 import { Logout } from 'src/app/models/user/logout.model';
 import { Registrate as Registration } from 'src/app/models/user/registrate.model';
 import { User } from 'src/app/models/user/user.model';
+import { BaseService } from '../base-service';
 import { CacheService } from '../cache/cache.service';
 import { JwtHelperService } from '../jwtHelpe/jwt-helper.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService extends BaseService {
 
     private user = new BehaviorSubject<User>({});
 
     constructor(private http: HttpClient,
         private jwtHelper: JwtHelperService,
-        private cache: CacheService) { }
+        private cache: CacheService) {
+        super();
+    }
 
     public getCurrentUser() {
         return this.user.asObservable()
             .pipe(map(user => {
                 if (!user.hasOwnProperty('isActive')) {
                     let cacheUser = this.cache.getCurrentUser();
-                    if(cacheUser)
-                    {
+                    if (cacheUser) {
                         user = cacheUser;
                         return user;
                     } else {
@@ -41,7 +43,7 @@ export class AuthService {
 
     public registrate(model: Registration): Observable<ResponseModel<ResponseMessage>> {
         return this.http.post<ResponseModel<ResponseMessage>>('api/user/registration', model)
-        .pipe(catchError(this.handleError<ResponseModel<ResponseMessage>>('Registrate')));
+            .pipe(catchError(this.handleError<ResponseModel<ResponseMessage>>('Registrate')));
     }
 
     public login(model: Login): Observable<ResponseModel<User>> {
@@ -59,7 +61,7 @@ export class AuthService {
     }
 
     public logout(userId: string): Observable<ResponseModel<ResponseMessage>> {
-        const headers= new HttpHeaders()
+        const headers = new HttpHeaders()
             .set('content-type', 'application/json')
             .set('Authorization', `bearer ${this.jwtHelper.getJwtToken()}`);
         const options = { headers: headers };
@@ -68,7 +70,7 @@ export class AuthService {
 
         return this.http.post<ResponseModel<ResponseMessage>>('api/user/logout', logoutRequest, options)
             .pipe(tap(response => {
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     this.jwtHelper.removeJwtToken();
                     this.cache.removeCurrentUser();
                     let deactiveUser = new User;
@@ -79,10 +81,17 @@ export class AuthService {
             .pipe(catchError(this.handleError<ResponseModel<ResponseMessage>>('logout')));
     }
 
-    private handleError<T>(operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
-            console.error(error);
-            return of(result as T);
-        };
+    public checkIsAdministratorUser(userId: string): Observable<ResponseModel<boolean>> {
+        let token = this.jwtHelper.getJwtToken();
+        if (!token)
+            return of();
+
+        const headers = new HttpHeaders()
+            .set('content-type', 'application/json')
+            .set('Authorization', `bearer ${token}`);
+        const options = { headers: headers };
+
+        return this.http.get<ResponseModel<boolean>>(`api/user/isadmin/${userId}`, options)
+            .pipe(catchError(this.handleError<ResponseModel<boolean>>('Check Is Administrator User')));
     }
 }

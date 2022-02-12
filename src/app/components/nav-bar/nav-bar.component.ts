@@ -5,8 +5,7 @@ import { User } from 'src/app/models/user/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service.service';
 import { CartListComponent } from '../cart/cart-list/cart-list.component';
-import { take } from 'rxjs/operators';
-
+import { OrderListComponent } from '../order/order-list/order-list.component';
 
 @Component({
     selector: 'nav-bar',
@@ -17,10 +16,10 @@ export class NavBarComponent implements OnInit {
 
     public totalItem: number = 0;
     public currentUser: User;
-
     public isAuthorized : boolean = false;
+    public isAdministrator: boolean = false;
 
-    constructor(public auth: AuthService,
+    constructor(private auth: AuthService,
         private router: Router,
         private cartService: CartService,
         private dialog: MatDialog) { }
@@ -42,6 +41,14 @@ export class NavBarComponent implements OnInit {
                 } else {
                     this.isAuthorized = false;
                 }
+
+                if (this.currentUser.id)
+                this.auth.checkIsAdministratorUser(this.currentUser.id)
+                .subscribe(result => {
+                    if (result?.isSuccessful){
+                        this.isAdministrator = result.content;
+                    }
+                });
             })
     }
 
@@ -60,5 +67,9 @@ export class NavBarComponent implements OnInit {
 
     public openProfile(){
         this.router.navigate(['/profile']);
+    }
+
+    public openOrderList(){
+        this.dialog.open(OrderListComponent);
     }
 }
