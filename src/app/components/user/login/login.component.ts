@@ -12,6 +12,7 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
 })
 export class LoginComponent implements OnInit {
     public hide = true;
+    public errors: string[] = [];
 
     public form = {
         step: {} as any,
@@ -41,6 +42,10 @@ export class LoginComponent implements OnInit {
                 .subscribe(result => {
                     if (result?.isSuccessful)
                         this.router.navigate(['']);
+                    else if (result?.errors)
+                        this.errors = result?.errors
+                    else if (result?.errorMessage)
+                        this.errors = [result?.errorMessage];
                 });
         }
     }

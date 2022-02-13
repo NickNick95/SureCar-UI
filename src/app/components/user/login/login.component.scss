@@ -1,5 +1,7 @@
 .login {
 
+  padding-bottom: 20px;
+
   .form-group {
     label {
       margin-right: 10px;
@@ -9,7 +11,6 @@
   button {
     margin-bottom: 20px;
   }
-
 
   ::ng-deep .mat-focused .mat-form-field-label {
       /*change color of label*/

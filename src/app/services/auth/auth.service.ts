@@ -50,7 +50,7 @@ export class AuthService extends BaseService {
     public login(model: Login): Observable<ResponseModel<User>> {
         return this.http.post<ResponseModel<User>>('api/user/login', model)
             .pipe(tap(response => {
-                if (response.content) {
+                if (response?.content) {
                     response.content.isActive = true;
 
                     this.user.next(response.content);

@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-
     public currentUser: User;
+    public errors: string[] = [];
 
     constructor(private auth: AuthService,
         private router: Router) { }
@@ -27,9 +27,13 @@ export class UserProfileComponent implements OnInit {
 
     public logout() {
         if (this.currentUser.id) {
-            this.auth.logout(this.currentUser.id).subscribe(response => {
-                if (response.isSuccessful)
+            this.auth.logout(this.currentUser.id).subscribe(result => {
+                if (result?.isSuccessful)
                     this.router.navigate(['/login']);
+                else if (result?.errors)
+                    this.errors = result?.errors
+                else if (result?.errorMessage)
+                    this.errors = [result?.errorMessage];
             });
         }
     }

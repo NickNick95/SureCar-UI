@@ -76,4 +76,5 @@
       <button type="submit" class="btn btn-primary" [disabled]="this.form.ref.invalid">Registrate</button>
     </span>
   </form>
+  <error [errors]="errors" *ngIf="errors"></error>
 </div>

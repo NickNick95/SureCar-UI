@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-
+    public errors: string[] = [];
 
     public form = {
         step: {} as any,
@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
             firstName: 'First name is required.',
             lastName: 'Last name is required.',
             email: 'Email is required.',
-            phoneNumber:'Phone number is required.',
+            phoneNumber: 'Phone number is required.',
             password: 'Password is required.',
             confirmPassword: 'Confirm password is required.'
         }
@@ -42,9 +42,12 @@ export class RegistrationComponent implements OnInit {
 
             this.authService.registrate(model)
                 .subscribe(result => {
-                    if (result?.isSuccessful) {
+                    if (result?.isSuccessful)
                         this.router.navigate(['login']);
-                    }
+                    else if (result?.errors)
+                        this.errors = result?.errors
+                    else if (result?.errorMessage)
+                        this.errors = [result?.errorMessage];
                 });
         }
     }

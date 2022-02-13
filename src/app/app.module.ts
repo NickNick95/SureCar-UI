@@ -35,6 +35,7 @@ import { BaseService } from './services/base-service';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderThumbnailComponent } from './components/order/order-thumbnail/order-thumbnail.component';
 import { CryptoService } from './services/crypto/crypto.service';
+import { ErrorComponent } from './components/general/error/error.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { CryptoService } from './services/crypto/crypto.service';
     RegistrationComponent,
     OrderListComponent,
     OrderThumbnailComponent,
+    ErrorComponent,
   ],
   imports: [
     FormsModule,

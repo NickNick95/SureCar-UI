@@ -1,6 +1,7 @@
 <h1>Edit Your Profile </h1>
 <hr>
-<div>
+<div class="logout">
     <button mat-button (click)="logout()">Logout</button>
+    <error [errors]="errors" *ngIf="errors"></error>
 </div>
 
