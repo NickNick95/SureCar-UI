@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CarItem } from 'src/app/models/cartItem.model';
 
+@Injectable()
 export class CartService {
 
     public cartItemList: CarItem[] = []

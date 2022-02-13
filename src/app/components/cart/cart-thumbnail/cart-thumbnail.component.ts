@@ -5,7 +5,8 @@ import { CartService } from 'src/app/services/cart/cart.service.service';
 @Component({
     selector: 'cart-thumbnail',
     templateUrl: './cart-thumbnail.component.html',
-    styleUrls: ['./cart-thumbnail.component.scss']
+    styleUrls: ['./cart-thumbnail.component.scss'],
+    providers: [CartService]
 })
 export class CartThumbnailComponent implements OnInit {
 

@@ -12,7 +12,9 @@ import { BaseService } from '../base-service';
 import { CacheService } from '../cache/cache.service';
 import { JwtHelperService } from '../jwtHelpe/jwt-helper.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class AuthService extends BaseService {
 
     private user = new BehaviorSubject<User>({});

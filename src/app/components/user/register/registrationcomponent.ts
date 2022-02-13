@@ -29,8 +29,7 @@ export class RegistrationComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private authService: AuthService,
-        private router: Router,
-        private dialog: MatDialog) { }
+        private router: Router) { }
 
     ngOnInit(): void {
         this.buildForm()

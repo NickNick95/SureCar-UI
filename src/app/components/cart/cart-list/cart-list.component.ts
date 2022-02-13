@@ -10,7 +10,8 @@ import { OrderService } from 'src/app/services/order/order.service';
 @Component({
     selector: 'cart-list',
     templateUrl: './cart-list.component.html',
-    styleUrls: ['./cart-list.component.scss']
+    styleUrls: ['./cart-list.component.scss'],
+    providers: [MatDialogRef, CartService, AuthService, OrderService]
 })
 export class CartListComponent implements OnInit {
 

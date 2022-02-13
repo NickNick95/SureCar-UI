@@ -10,7 +10,8 @@ import { OrderListComponent } from '../order/order-list/order-list.component';
 @Component({
     selector: 'nav-bar',
     templateUrl: './nav-bar.component.html',
-    styleUrls: ['./nav-bar.component.scss']
+    styleUrls: ['./nav-bar.component.scss'],
+    providers: [AuthService, Router, CartService, MatDialog]
 })
 export class NavBarComponent implements OnInit {
 

@@ -8,7 +8,7 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
     public hide = true;

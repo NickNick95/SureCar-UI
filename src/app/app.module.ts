@@ -10,11 +10,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIInterceptor } from './services/api-interceptor';
 import { CarListComponent } from './components/car/car-list/car-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { OverlayModule  } from '@angular/cdk/overlay'
 
 import { GoogleMapsModule } from '@angular/google-maps'
 import { WarehouseService } from './services/warehouse/warehouse.service';
@@ -63,11 +64,14 @@ import { ErrorComponent } from './components/general/error/error.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatDialog,
+    MatDialogRef,
     MatButtonModule,
     GoogleMapsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    OverlayModule
   ],
   providers: [
     CryptoService,
@@ -82,7 +86,7 @@ import { ErrorComponent } from './components/general/error/error.component';
         provide: HTTP_INTERCEPTORS,
         useClass: APIInterceptor,
         multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

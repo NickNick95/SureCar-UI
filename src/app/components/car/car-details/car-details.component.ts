@@ -4,23 +4,25 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
     selector: 'app-car-details',
     templateUrl: './car-details.component.html',
-    styleUrls: ['./car-details.component.scss']
+    styleUrls: ['./car-details.component.scss'],
 })
 export class CarDetailsComponent implements OnInit {
 
     public zoom = 12
-    public center: google.maps.LatLngLiteral
-    public options: google.maps.MapOptions = {
+    public center: any
+    public options: any = {
         mapTypeId: 'satellite',
         disableDoubleClickZoom: true,
         maxZoom: 15,
         minZoom: 8,
     }
 
+    public lat: any;
+    public lng: any;
+
     public marker: any;
 
-    constructor(public dialogRef: MatDialogRef<CarDetailsComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit(): void {
         this.marker = {
@@ -33,7 +35,6 @@ export class CarDetailsComponent implements OnInit {
                 text: `${this.data.vehicle.make} ${this.data.vehicle.model}`,
             },
             title: `${this.data.vehicle.make} ${this.data.vehicle.model}`,
-            options: { animation: google.maps.Animation.BOUNCE },
         }
 
         navigator.geolocation.getCurrentPosition((position) => {
