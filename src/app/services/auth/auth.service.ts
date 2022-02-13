@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, take, tap } from 'rxjs';
+import { ResponseFlag } from 'src/app/models/general/response-flag.model';
 import { ResponseMessage } from 'src/app/models/general/response-message.model';
 import { ResponseModel } from 'src/app/models/general/response.model';
 import { Login } from 'src/app/models/user/login.model';
@@ -81,7 +82,7 @@ export class AuthService extends BaseService {
             .pipe(catchError(this.handleError<ResponseModel<ResponseMessage>>('logout')));
     }
 
-    public checkIsAdministratorUser(userId: string): Observable<ResponseModel<boolean>> {
+    public checkIsAdministratorUser(userId: string): Observable<ResponseModel<ResponseFlag>> {
         let token = this.jwtHelper.getJwtToken();
         if (!token)
             return of();
@@ -91,7 +92,7 @@ export class AuthService extends BaseService {
             .set('Authorization', `bearer ${token}`);
         const options = { headers: headers };
 
-        return this.http.get<ResponseModel<boolean>>(`api/user/isadmin/${userId}`, options)
-            .pipe(catchError(this.handleError<ResponseModel<boolean>>('Check Is Administrator User')));
+        return this.http.get<ResponseModel<ResponseFlag>>(`api/user/isadmin/${userId}`, options)
+            .pipe(catchError(this.handleError<ResponseModel<ResponseFlag>>('Check Is Administrator User')));
     }
 }

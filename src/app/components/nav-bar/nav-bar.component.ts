@@ -46,7 +46,7 @@ export class NavBarComponent implements OnInit {
                 this.auth.checkIsAdministratorUser(this.currentUser.id)
                 .subscribe(result => {
                     if (result?.isSuccessful){
-                        this.isAdministrator = result.content;
+                        this.isAdministrator = result.content.flag;
                     }
                 });
             })

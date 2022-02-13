@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/models/user/login.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CryptoService } from 'src/app/services/crypto/crypto.service';
 
 @Component({
     selector: 'login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
         private authService: AuthService,
-        private router: Router) { }
+        private router: Router,
+        private crypto: CryptoService) { }
 
     ngOnInit(): void {
         this.buildForm();
@@ -33,9 +35,12 @@ export class LoginComponent implements OnInit {
         if (this.form.ref.valid) {
             let model = new Login(this.form.ref.value);
 
+            model.password = this.crypto.encrypt(model.password);
+
             this.authService.login(model)
                 .subscribe(result => {
-                    this.router.navigate(['']);
+                    if (result?.isSuccessful)
+                        this.router.navigate(['']);
                 });
         }
     }

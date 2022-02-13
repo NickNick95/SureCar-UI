@@ -34,6 +34,7 @@ import { OrderService } from './services/order/order.service';
 import { BaseService } from './services/base-service';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { OrderThumbnailComponent } from './components/order/order-thumbnail/order-thumbnail.component';
+import { CryptoService } from './services/crypto/crypto.service';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { OrderThumbnailComponent } from './components/order/order-thumbnail/orde
     MatInputModule
   ],
   providers: [
+    CryptoService,
     BaseService,
     OrderService,
     CacheService,

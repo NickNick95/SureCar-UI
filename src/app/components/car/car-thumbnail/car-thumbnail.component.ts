@@ -33,9 +33,8 @@ export class CarThumbnailComponent implements OnInit {
                 if (user?.isActive && user?.id) {
                     this.auth.checkIsAdministratorUser(user.id)
                         .subscribe(result => {
-                            if (result?.isSuccessful) {
-                                this.isAdministrator = result.content;
-                            }
+                            if (result?.isSuccessful)
+                                this.isAdministrator = result?.content.flag;
                         });
                 } else {
                     this.isAdministrator = false;
