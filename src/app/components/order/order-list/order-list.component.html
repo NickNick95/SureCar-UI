@@ -1,0 +1,16 @@
+<div class="dialog-header">
+  <h2 title>Orders</h2>
+</div>
+<mat-dialog-content>
+  <div *ngIf="!isEmpty" class="order-list">
+    <div *ngFor="let orderDetails of orderDetailsList">
+      <order-thumbnail [orderDetails]="orderDetails"></order-thumbnail>
+    </div>
+  </div>
+  <div *ngIf="isEmpty" class="alert alert-secondary" role="alert">
+    You don't have any orders.
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false" class="modal-secondary">Cansel</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

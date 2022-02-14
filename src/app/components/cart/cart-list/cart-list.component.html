@@ -1,0 +1,27 @@
+<div class="dialog-header">
+    <h2 title>Total price: {{grandTotal | number : '1.0-0' }} $</h2>
+</div>
+<mat-dialog-content>
+    <div *ngIf="!isCartEmpty">
+        <div align="end">
+            <button mat-button class="clear" (click)="clearAll()">Clear All</button>
+        </div>
+        <div class="cart-list">
+            <div *ngFor="let cartItem of cartItems">
+                <cart-thumbnail [cartItem]="cartItem"></cart-thumbnail>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isCartEmpty">
+        <p>The shop cart is empty. Pleas add a car for making orders. Thanks</p>
+    </div>
+    <div *ngIf="!isAuthorized" class="alert alert-warning" role="alert">
+        The only authorized users can make orders
+      </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false" class="modal-secondary">Cansel</button>
+    <button mat-stroked-button *ngIf="!isCartEmpty && isAuthorized" (click)="submit()" class="modal-primary">
+        Approve Order(s)
+    </button>
+</mat-dialog-actions>

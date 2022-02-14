@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+	<div class="map">
+		<google-map [zoom]="zoom" [center]="center" [width]="300" [height]="300">
+			<map-marker [position]="marker.position" [label]="marker.label" [title]="marker.title"
+				[options]="marker.options">
+			</map-marker>
+		</google-map>
+	</div>
+	<div class="information">
+		<div>
+			Warehouse: {{data.warehouse.name}}
+		</div>
+		<div>
+			Car location: {{data.warehouse.car.location}}
+		</div>
+		<div>
+			Date Added: {{data.vehicle.dateAdded | date:'dd-MM-yyyy'}}
+		</div>
+		<div>
+			Year Model: {{data.vehicle.yearModel}}
+		</div>
+		<div>
+			Licensed: {{data.vehicle.licensed}}
+		</div>
+		<div>
+			Price: {{data.vehicle.price}} $
+		</div>
+	</div>
+</mat-dialog-content>
