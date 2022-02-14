@@ -12,6 +12,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 export class OrderListComponent implements OnInit {
 
     public orderDetailsList: OrderDetails[];
+    public isEmpty: boolean;
 
     constructor(private orderService: OrderService) { }
 
@@ -19,6 +20,7 @@ export class OrderListComponent implements OnInit {
         this.orderService.getAll().subscribe(response => {
             if (response.content) {
                 this.orderDetailsList = response.content;
+                this.isEmpty = this.orderDetailsList.length === 0;
             }
         });
     }

@@ -10,8 +10,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 @Component({
     selector: 'cart-list',
     templateUrl: './cart-list.component.html',
-    styleUrls: ['./cart-list.component.scss'],
-    providers: [MatDialogRef, CartService, AuthService, OrderService]
+    styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent implements OnInit {
 
@@ -60,7 +59,10 @@ export class CartListComponent implements OnInit {
             order.vehicleIds = this.cartItems.map(c => c.vehicleId);
             order.userId = this.currentUser.id
             this.orderService.createOrder(order).subscribe(result => {
-                this.dialogRef.close();
+                if (result.isSuccessful) {
+                    this.dialogRef.close();
+                    this.cartService.removeAllCart();
+                }
             });
         }
     }

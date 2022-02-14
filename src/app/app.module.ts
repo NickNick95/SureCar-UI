@@ -10,7 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIInterceptor } from './services/api-interceptor';
 import { CarListComponent } from './components/car/car-list/car-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -64,8 +64,6 @@ import { ErrorComponent } from './components/general/error/error.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatDialog,
-    MatDialogRef,
     MatButtonModule,
     GoogleMapsModule,
     MatIconModule,

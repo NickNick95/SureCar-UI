@@ -15,9 +15,9 @@
     <div *ngIf="isCartEmpty">
         <p>The shop cart is empty. Pleas add a car for making orders. Thanks</p>
     </div>
-    <p *ngIf="!isAuthorized">
+    <div *ngIf="!isAuthorized" class="alert alert-warning" role="alert">
         The only authorized users can make orders
-    </p>
+      </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button [mat-dialog-close]="false" class="modal-secondary">Cansel</button>
