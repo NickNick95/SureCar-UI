@@ -1,10 +1,22 @@
-<div class="topnav">
-	<a class="active" href="#home">Home</a>
-	<a href="#about">About</a>
-	<a href="#contact">Contact</a>
-	<div class="search-container">
-	  <form action="/action_page.php">
-		<input type="text" placeholder="Search.." name="search">
-		<button type="submit"><i class="fa fa-search"></i></button>
-	  </form>
-</div>
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+	<a class="navbar-brand" (click)="openCars()">Sure Car</a>
+	<div>
+		<button mat-button *ngIf="!isAdministrator" (click)="openCart()">
+			<mat-icon class="white-icon">shopping_basket</mat-icon>
+			<div class="badge bg-danger">{{totalItem}}</div>
+		</button>
+
+		<button mat-button *ngIf="isAdministrator" (click)="openOrderList()">
+			<mat-icon class="white-icon">message</mat-icon>
+		</button>
+
+		<button mat-button *ngIf="!isAuthorized" (click)="login()">
+			<mat-icon class="white-icon">account_circle</mat-icon>
+			Login
+		</button>
+
+		<button mat-button *ngIf="isAuthorized" (click)="openProfile()">
+			{{currentUser.userName}}
+		</button>
+	</div>
+</nav>

@@ -1,0 +1,7 @@
+<div class="list">
+    <div *ngFor="let warehouse of warehouses">
+        <div  *ngFor="let vehicle of warehouse.car.vehicles">
+                <car-thumbnail [warehouse]="warehouse" [vehicle]="vehicle"></car-thumbnail>
+        </div>
+    </div>
+</div>

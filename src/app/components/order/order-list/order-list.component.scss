@@ -1,0 +1,25 @@
+.order-list {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+}
+
+.mat-dialog-content {
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

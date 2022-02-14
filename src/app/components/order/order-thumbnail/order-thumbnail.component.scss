@@ -1,0 +1,36 @@
+.order-thumbnail {
+    background-color: #D3DEDC;
+    margin-top: 10px;
+
+    .vehicle-details {
+        padding: 20px;
+        width: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 200px;
+        display: block;
+        background-color: #f1f1f1;
+
+        .details {
+            margin-top: 2px;
+            padding: 5px;
+            background-color: #D3DEDC;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

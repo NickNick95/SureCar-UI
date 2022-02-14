@@ -1,0 +1,38 @@
+.thumbnail {
+     min-height: 210px;
+     margin: 15px;
+     color: #1A374D;
+     width: auto;
+     background-color: #D3DEDC;
+     .photo {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        width: 40%;
+        img {
+            width: 50%;
+            height: 50%;
+            display: block;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .information {
+        display: inline-block;
+        vertical-align: middle;
+
+        h2 {
+            margin: 5px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    button{
+        margin-top: 10px;
+    }
+}
